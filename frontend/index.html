@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ToyVerse - The ultimate destination for toys, games, puzzles, and learning adventures for kids of all ages.">
+  <meta name="keywords" content="toys, kids, lego, building blocks, dolls, action figures, board games, STEM toys">
+  <title>ToyVerse | Wonder & Play Toy Store</title>
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF5E5B'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" id="announcementBar">
+    <span>🎈 FREE SHIPPING on all orders over $50! Use code <strong>TOYMAGIC</strong></span>
+    <span class="badge-pill">Limited Offer</span>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#" class="logo" id="brandLogo" aria-label="ToyVerse Home">
+        <div class="logo-icon">
+          <!-- Rocket / Toy SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          </svg>
+        </div>
+        <span>ToyVerse</span>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search toys, brands, robots, dolls, Lego..." autocomplete="off">
+          <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">&times;</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Wishlist Button -->
+        <button type="button" class="btn-icon-action" id="wishlistHeaderBtn" title="Your Wishlist" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+          <span class="badge-count" id="wishlistBadgeCount">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button type="button" class="btn-icon-action" id="cartHeaderBtn" title="Shopping Cart" aria-label="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="21" r="1"/>
+            <circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </button>
+
+        <!-- User Authentication Account Button -->
+        <div id="authHeaderContainer">
+          <button type="button" class="btn-login" id="loginBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Sign In</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Category Navigation Bar -->
+  <nav class="categories-nav-wrapper" id="categoryNav">
+    <div class="container">
+      <div class="categories-scroll" id="categoriesScrollList">
+        <button class="category-chip active" data-category="">
+          <span>🌟 All Toys</span>
+          <span class="chip-count" id="totalProductCount">--</span>
+        </button>
+        <!-- Dynamic Category Chips loaded via JS -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="hero-tag">
+          <span>✨ Discover the Magic of Play</span>
+        </div>
+        <h1 class="hero-title">
+          Where Imagination Takes <span class="highlight">Flight!</span>
+        </h1>
+        <p class="hero-description">
+          Explore our handpicked collection of award-winning toys, STEM learning kits, building blocks, and action figures designed to inspire curious young minds.
+        </p>
+        
+        <div class="hero-actions">
+          <a href="#catalogAnchor" class="btn-hero-primary" id="exploreCatalogBtn">
+            <span>Shop All Toys</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="btn-hero-secondary" id="heroSaleBtn">
+            <span>🔥 On Sale Specials</span>
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h4>100%</h4>
+            <p>Child-Safe Materials</p>
+          </div>
+          <div class="stat-item">
+            <h4>500+</h4>
+            <p>Top Brands & Kits</p>
+          </div>
+          <div class="stat-item">
+            <h4>4.9 ★</h4>
+            <p>Parent Approved</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-showcase">
+        <div class="hero-card-stack">
+          <div class="hero-image-banner">
+            <img src="/media/products/coding-robot-starter-kit.png" alt="Featured Toy - Coding Robot Kit" onerror="this.src='/media/products/marble-run-construction-set.png'">
+            <div class="floating-pill floating-pill-1">
+              <span>🚀 Bestseller 2026</span>
+            </div>
+            <div class="floating-pill floating-pill-2">
+              <span>⭐ Top Rated STEM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Catalog Section -->
+  <main class="catalog-section" id="catalogAnchor">
+    <div class="container">
+      
+      <!-- Catalog Controls & Search Bar -->
+      <div class="catalog-header">
+        <div class="catalog-title-group">
+          <h2 id="catalogHeading">Explore Toys</h2>
+          <p id="catalogSubtitle">Showing all available products in our store</p>
+        </div>
+
+        <div class="toolbar-controls">
+          <!-- Toggle Filter Drawer -->
+          <button type="button" class="filter-btn-toggle" id="filterToggleBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span>Filters</span>
+          </button>
+
+          <!-- Sorting Dropdown -->
+          <div class="sort-select-wrapper">
+            <select class="sort-select" id="sortSelect" aria-label="Sort products">
+              <option value="-created_at">✨ Newest Arrivals</option>
+              <option value="final_price">💰 Price: Low to High</option>
+              <option value="-final_price">💎 Price: High to Low</option>
+              <option value="-discount_percent">🔥 Biggest Discount</option>
+              <option value="name">🔤 Name: A-Z</option>
+            </select>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Filter Pills -->
+      <div class="quick-filters">
+        <button class="quick-filter-tag active" data-filter="all">All Items</button>
+        <button class="quick-filter-tag" data-filter="on_sale">🏷️ On Sale</button>
+        <button class="quick-filter-tag" data-filter="featured">⭐ Featured</button>
+        <button class="quick-filter-tag" data-filter="in_stock">✅ In Stock</button>
+        <button class="quick-filter-tag" data-filter="under_25">💵 Under $25</button>
+        <button class="quick-filter-tag" data-filter="under_50">💳 Under $50</button>
+      </div>
+
+      <!-- Active Filters Tag Bar -->
+      <div class="active-filters-bar" id="activeFiltersBar">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Advanced Filter Panel (Collapsible) -->
+      <div class="filter-panel" id="filterPanel">
+        <!-- Price Range -->
+        <div class="filter-group">
+          <h4>Price Range ($)</h4>
+          <div class="price-inputs">
+            <input type="number" id="minPriceInput" placeholder="Min $" min="0" step="1">
+            <span>to</span>
+            <input type="number" id="maxPriceInput" placeholder="Max $" min="0" step="1">
+          </div>
+        </div>
+
+        <!-- Target Age -->
+        <div class="filter-group">
+          <h4>Target Age</h4>
+          <select id="ageFilterSelect" class="sort-select" style="width: 100%;">
+            <option value="">Any Age</option>
+            <option value="2">Toddlers (2+)</option>
+            <option value="4">Preschool (4+)</option>
+            <option value="6">Kids (6+)</option>
+            <option value="8">Big Kids (8+)</option>
+            <option value="12">Teens (12+)</option>
+          </select>
+        </div>
+
+        <!-- Stock Availability -->
+        <div class="filter-group">
+          <h4>Availability</h4>
+          <label class="filter-checkbox-label">
+            <input type="checkbox" id="filterInStockCheckbox">
+            <span>In Stock Only</span>
+          </label>
+          <label class="filter-checkbox-label">
+            <input type="checkbox" id="filterOnSaleCheckbox">
+            <span>Discounted / On Sale</span>
+          </label>
+          <label class="filter-checkbox-label">
+            <input type="checkbox" id="filterFeaturedCheckbox">
+            <span>Staff Picks & Featured</span>
+          </label>
+        </div>
+
+        <!-- Apply / Reset buttons -->
+        <div class="filter-group" style="display: flex; flex-direction: column; justify-content: flex-end; gap: 0.5rem;">
+          <button type="button" class="btn-hero-primary" id="applyFiltersBtn" style="padding: 0.6rem; font-size: 0.9rem; justify-content: center;">Apply Filters</button>
+          <button type="button" class="btn-clear-all" id="resetFiltersBtn" style="text-align: center;">Reset All</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Loading Skeleton / Spinner placeholder -->
+        <div class="state-container">
+          <div class="spinner"></div>
+          <h3>Loading exciting toys...</h3>
+          <p>Gathering the best adventures for you!</p>
+        </div>
+      </div>
+
+      <!-- Pagination / Load More -->
+      <div id="paginationContainer" style="text-align: center; margin-top: 3rem; display: none;">
+        <button type="button" class="btn-hero-secondary" id="loadMoreBtn">
+          <span>Load More Toys</span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="productDetailModal">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close-btn" id="closeDetailModalBtn" aria-label="Close modal">&times;</button>
+      <div class="modal-body" id="productDetailContent">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Slide-over Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="21" r="1"/>
+            <circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+          <span>Shopping Cart</span>
+        </h3>
+        <span class="item-counter" id="cartItemCountLabel">0 items</span>
+        <button type="button" class="modal-close-btn" id="closeCartBtn" style="position: static;" aria-label="Close cart">&times;</button>
+      </div>
+
+      <!-- Free Shipping Tracker -->
+      <div class="shipping-progress-box" id="shippingTracker">
+        <div class="shipping-progress-text" id="shippingTrackerText">
+          Add $50.00 more for FREE shipping!
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="shippingProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Item List -->
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Cart Footer / Summary -->
+      <div class="cart-footer">
+        <div class="cart-summary-line">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Estimated Shipping</span>
+          <span id="cartShipping">$5.99</span>
+        </div>
+        <div class="cart-summary-line total-line">
+          <span>Total</span>
+          <span id="cartTotal">$0.00</span>
+        </div>
+        <button type="button" class="btn-checkout" id="checkoutBtn">
+          <span>Proceed to Checkout</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Drawer / Modal -->
+  <div class="cart-drawer-overlay" id="wishlistDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+          <span>Your Wishlist</span>
+        </h3>
+        <button type="button" class="modal-close-btn" id="closeWishlistBtn" style="position: static;" aria-label="Close wishlist">&times;</button>
+      </div>
+
+      <div class="cart-items-list" id="wishlistItemsList">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal (Login / Register / Profile) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <button type="button" class="modal-close-btn" id="closeAuthModalBtn" aria-label="Close modal">&times;</button>
+      <div class="modal-body">
+        
+        <!-- Tab navigation for unauthenticated users -->
+        <div id="authTabsContainer">
+          <div class="auth-tabs">
+            <button type="button" class="auth-tab-btn active" id="tabLoginBtn">Sign In</button>
+            <button type="button" class="auth-tab-btn" id="tabRegisterBtn">Create Account</button>
+          </div>
+
+          <!-- Login Form -->
+          <form class="auth-form" id="loginForm">
+            <div class="form-group">
+              <label for="loginEmail">Email Address</label>
+              <input type="email" id="loginEmail" placeholder="yourname@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-submit-auth" id="loginSubmitBtn">Sign In to ToyVerse</button>
+          </form>
+
+          <!-- Register Form -->
+          <form class="auth-form" id="registerForm" style="display: none;">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="regFirstName">First Name</label>
+                <input type="text" id="regFirstName" placeholder="Jane" required>
+              </div>
+              <div class="form-group">
+                <label for="regLastName">Last Name</label>
+                <input type="text" id="regLastName" placeholder="Doe" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="regEmail">Email Address</label>
+              <input type="email" id="regEmail" placeholder="jane@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="regPhone">Phone (Optional)</label>
+              <input type="tel" id="regPhone" placeholder="+1 555-0199">
+            </div>
+            <div class="form-group">
+              <label for="regPassword">Password</label>
+              <input type="password" id="regPassword" placeholder="At least 8 characters" required>
+            </div>
+            <div class="form-group">
+              <label for="regPasswordConfirm">Confirm Password</label>
+              <input type="password" id="regPasswordConfirm" placeholder="Repeat password" required>
+            </div>
+            <button type="submit" class="btn-submit-auth" id="registerSubmitBtn">Create Account</button>
+          </form>
+        </div>
+
+        <!-- Profile View for Authenticated Users -->
+        <div id="profileContainer" style="display: none;">
+          <div class="profile-card">
+            <div class="profile-avatar-large" id="profileAvatar">U</div>
+            <h3 class="profile-name" id="profileFullName">User Name</h3>
+            <p class="profile-email" id="profileEmailAddress">user@example.com</p>
+
+            <button type="button" class="btn-hero-secondary" id="logoutBtn" style="padding: 0.55rem 1.25rem; font-size: 0.9rem; margin-bottom: 1.5rem;">
+              Sign Out
+            </button>
+
+            <!-- Saved Addresses Section -->
+            <div class="profile-addresses-list">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h4 style="font-size: 1rem; font-weight: 700;">Saved Shipping Addresses</h4>
+                <button type="button" class="btn-clear-all" id="addAddressToggleBtn">+ Add New</button>
+              </div>
+
+              <!-- New Address Form (Collapsible) -->
+              <form id="newAddressForm" style="display: none; margin-bottom: 1.25rem; text-align: left;" class="auth-form">
+                <div class="form-group">
+                  <label for="addrLabel">Label</label>
+                  <select id="addrLabel">
+                    <option value="home">Home</option>
+                    <option value="work">Work</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="addrFullName">Full Name</label>
+                    <input type="text" id="addrFullName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="addrPhone">Phone</label>
+                    <input type="tel" id="addrPhone" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="addrLine1">Address Line 1</label>
+                  <input type="text" id="addrLine1" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="addrCity">City</label>
+                    <input type="text" id="addrCity" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="addrState">State</label>
+                    <input type="text" id="addrState" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="addrPostal">Postal Code</label>
+                    <input type="text" id="addrPostal" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="addrCountry">Country</label>
+                    <input type="text" id="addrCountry" value="USA" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn-submit-auth" style="padding: 0.65rem;">Save Address</button>
+              </form>
+
+              <!-- Address items list -->
+              <div id="addressesListContainer">
+                <p style="font-size: 0.88rem; color: var(--text-muted);">No addresses saved yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+              </svg>
+            </div>
+            <span>ToyVerse</span>
+          </a>
+          <p>Inspiring young creators, thinkers, and builders with high-quality, safe, and engaging toys that spark lifelong curiosity.</p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#" class="footer-category-link" data-slug="">All Categories</a></li>
+            <li><a href="#" class="footer-category-link" data-slug="building-toys">Building Toys</a></li>
+            <li><a href="#" class="footer-category-link" data-slug="action-figures">Action Figures</a></li>
+            <li><a href="#" class="footer-category-link" data-slug="board-games-puzzles">Board Games & Puzzles</a></li>
+            <li><a href="#" class="footer-category-link" data-slug="stem-learning">STEM & Learning</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="#announcementBar">Shipping & Returns</a></li>
+            <li><a href="#catalogAnchor">Order Tracking</a></li>
+            <li><a href="#announcementBar">Gift Cards</a></li>
+            <li><a href="#siteHeader">Safety & Quality</a></li>
+            <li><a href="#brandLogo">Help Center</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>ToyVerse Magic</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 1rem;">Join the ToyVerse Club for exclusive early access to rare collectibles and secret weekend discounts.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="email" placeholder="Enter your email" style="padding: 0.6rem 0.85rem; border-radius: var(--radius-full); border: 1px solid #334155; background: #1E293B; color: #FFF; font-size: 0.85rem; width: 100%;">
+            <button type="button" class="btn-hero-primary" style="padding: 0.6rem 1rem; font-size: 0.85rem;">Join</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ToyVerse Store. All rights reserved.</p>
+        <p>Crafted for young adventurers everywhere 🚀</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
